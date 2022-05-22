@@ -1,0 +1,68 @@
+{% extends 'store/base.html' %}
+{% block content1 %}
+
+
+<h2 align="center">Bill No : {{ billNo }}</h2>
+<br> <br>
+<h2 align="center"> Date : {{ ddate }}</h2>
+<!-- <div style="margin-left:15%;  width:100%;">
+    <table style="height: auto;" cellspacing="1" cellpadding="10">  
+        <tr>
+            <td style="color: black; height: 20%;font-size:large;font-weight:bolder"><u> Name </u>:</td>
+            <td style="color: black; height: 20%;font-size:large">{{ sperson.StoreName }}</td>
+        </tr>
+        <tr>
+        <td style="color: black; height: 20%;font-size:large"><u>Person Name </u>: {{ sperson.PersonName }}</td>
+        </tr>
+        <tr>
+            <td style="color: black; height: 20%;font-size:large"><u>Contact :</u> {{ sperson.Contact }}</td>
+        </tr>
+        <tr>
+        <td style="color: black; height: 20%;font-size:large"><u>Email :</u> {{ sperson.email }}</td>
+        </tr>
+        <tr>
+            <td style="color: black; height: 20%;font-size:large"><u>Address :</u>{{ sperson.add1 }}</td>
+        </tr>
+        <tr>
+            <td  style="color: black; height: 20%;font-size:large"><u>Date :</u>{{ ddate }}</td>
+            
+        </tr>
+    </table>
+    </div> -->
+<br><br>
+<br>
+<h3>
+<table border="3" style="margin-left:15%; width:78%;" class="table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product QTY</th>
+            <th>Product Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in BillDes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.pd_nm }}</td>
+                <td>{{ i.pd_price }}</td>
+                <td>{{ i.pd_qty }}</td>
+                <td>{{ i.pd_tot }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="4">Payeble Amount </td>
+            <td>{{ tot }}</td>
+        </tr>
+    </tbody>
+</table>
+<td> <div style="margin-left:15%;">
+    <a style="margin-left:45%;" class="btn btn-info" href="{% url 'sk_create_pdf' billNo %}"> View Bill </a>
+   </div>
+</td>
+</table>
+</h3>
+
+{% endblock %}

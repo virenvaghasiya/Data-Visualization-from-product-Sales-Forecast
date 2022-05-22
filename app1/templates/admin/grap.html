@@ -1,0 +1,63 @@
+{% extends 'admin/adminbase.html' %}
+
+{% load static %}
+
+<html lang="en" class="no-js">
+   
+	<head>
+		<meta charset="UTF-8" />
+		<link href="{% static 'graph/css/style.css' %}">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>GRAPH</title>
+		<meta name="description" content="Animated Checkboxes and Radio Buttons with SVG: Using SVG for adding some fancy 'check' animations to form inputs" />
+		<meta name="keywords" content="animated checkbox, svg, radio button, styled checkbox, css, pseudo element, form, animated svg" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="{% static 'graph/../favicon.ico' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'graph/css/normalize.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'graph/css/demo.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'graph/css/component.css' %}" />
+		<script src="{% static 'graph/js/modernizr.custom.js' %}"></script>
+        <script src="{% static 'graph/js/svgcheckbx.js' %}"></script>
+	</head>
+    {% block content7 %}
+    <body>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">sales prediction </h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        
+                        <ol class="breadcrumb">
+                            <li><a href="{% url 'AdminDashboard' %}">Dashboard</a></li>
+                            <li class="active"> Sales Prediction  </li>
+                        </ol>
+                    </div>
+                </div>
+        <div id="container">
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Graph of Sales'
+        },
+        xAxis: {
+            categories: [{% for x,y in data.items %}'{{ y|escapejs }}',{% endfor %}]
+        },
+         series: [
+        {
+            name: 'Shop keepers Sales',
+            data: [{% for x,y in data.items %} {{ x|escapejs }},{% endfor %}]
+        }]
+    });
+  </script>
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

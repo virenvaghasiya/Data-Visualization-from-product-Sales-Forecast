@@ -1,0 +1,58 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+{% block content1 %}
+<html>
+<body>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">View stock </h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'AdminDashboard' %}">Dashboard</a></li>
+                    <li class="active"> View Stock </li>
+                </ol>
+            </div>
+        </div>
+<div class="table-responsive">
+    
+    <div class="container">
+        <table class="table" style=" margin-top:5%;">
+            <thead>
+                <tr>
+                    <!-- <th>#</th> -->
+                    <th align="center" style="color:black; font-weight: bold;">Stock Name</th>
+                    <!-- <th>shopkeeper Name</th> -->
+                    <th align="center" style="color:black; font-weight: bold;">Quantity</th>
+                    <th align="center" style="color:black; font-weight: bold;">Price</th>
+                    <th align="center" style="color:black; font-weight: bold;">Action</th>
+                    
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in data %}
+                <tr>
+                    <!-- <td>{{ i.id }}</td> -->
+                    <td class="txt-oflo">{{ i.productName }}</td>
+                    <td>{{ i.quantity }}</td>
+                    <td>{{ i.price }}</td>
+                    <td><a href="{% url 'editstock' i.id %}">Edit</a></td>
+                    <!-- <td>{{ i.email }}</td> -->
+                
+                    <!-- <td><a href = "/storedelete/{{ i.id }}">Delete</a> <a href = "/storeview/{{ i.id }}">View</a> <a href = "/storeedit/{{ i.id }}">Edit</a></td> -->
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

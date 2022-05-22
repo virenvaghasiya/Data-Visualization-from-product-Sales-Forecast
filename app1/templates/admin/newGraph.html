@@ -1,0 +1,103 @@
+{% extends 'admin/adminbase.html' %} 
+{% load static %} 
+{% block content9 %} 
+<html>
+  <head>
+    <title>Sales Graph</title>
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+          <div class="row bg-title">
+              <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                  <h4 class="page-title">sales prediction </h4>
+              </div>
+              <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                  
+                  <ol class="breadcrumb">
+                      <li><a href="{% url 'AdminDashboard' %}">Dashboard</a></li>
+                      <li class="active"> Sales Prediction  </li>
+                  </ol>
+              </div>
+          </div>
+    <div>
+    <form method="POST">
+      {% csrf_token %}
+      <pre> Store Name :  {{ s }}
+      <select name="store" id="store">
+        <option disabled selected>Select Store</option>
+        {% for s in store %}
+        <option value="{{s}}">{{s}}</option>
+        <h2>{{s }}</h2>
+        {% endfor %}
+      </select>
+      </pre>
+      <pre> Product : {{ p }}
+      <select name="product" id="product">
+        <option disabled selected>Select Product</option>
+        {% for p in product %}
+        <option value="{{p}}">{{p}}</option>
+        {% endfor %}
+      </select>
+      </pre>
+      <pre> Year  : {{ year }}
+        <select name="year" id="year">
+          <option disabled selected>Select Year</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+          <option>2026</option>
+          <option>2027</option>
+        </select>
+        </pre>
+      <!-- <input
+        type="number"
+        min="2021"
+        max="2025"
+        name="year"
+        id="year"
+        placeholder="select prediction year"
+        required
+      /> -->
+   <center> <button type="submit" class="btn btn-success">View Graph</button></center>
+      
+    </form>
+    <!-- <h3>shopkeeper:{{s}}</h3>
+    <h3>produ:{{p}}</h3>
+    <h3>year:{{ year }}</h3>
+    <h3 id="demo"></h3> -->
+    <!-- <script>
+      function myFunction() {
+        var x = document.getElementById("store").value;
+        document.getElementById("demo").innerHTML = x;
+      }
+      </script> -->
+
+    <div>
+      {% if no_data %}
+      <span>Sorry, No sells Data available.</span>
+      {% else %}
+      <br>
+      <table border="2" class="table" style="width:600px">
+        <h1 id="demo"></h1>
+        <tr>
+          <th style="color:black; font-weight: bold;">Year</th>
+          <th style="color:black; font-weight: bold;">Quantity</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+          <td>{{d.0}}</td>
+          <td>{{d.1}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    {% endif %} 
+    {% if not no_data %}
+    <div style="width: 800; height:500;">{% autoescape off %} {{ plot_div }} {% endautoescape %}</div>
+    {% endif %}
+    </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+{% load rec_data %}
+{% block content2 %}
+<html >
+    <head>
+        <title>Store Details</title>
+    </head>
+    <body>
+        <div  style="margin-left: 15.7%;">
+        <table height="200px"; width="1500px" >  
+        <tr style="color:black;">
+            <td align="center" style="color:black; font-weight: bold;">  Store Name : </td>
+            <td> <input type="text" value= {{ data.StoreName }}> </td>
+            <td align="center" style="color:black; font-weight: bold;"> Person Name : </td>
+            <td> <input type="text" value= {{ data.PersonName }} ></td>
+        </tr>
+        <tr style="color:black;">
+            <td align="center" style="color:black; font-weight: bold;"> Contact : </td>
+            <td><input type="number" value= {{ data.Contact }}></td>
+            <td align="center" style="color:black; font-weight: bold;"> Email :</td> 
+            <td><input type="email" value={{ data.email }}></td>
+        </tr>
+        <tr style="color:black;">
+            <td align="center" style="color:black; font-weight: bold;"> Address :</td>
+            <td><input type="text" value= {{ data.add1 }}></td>
+        </tr>
+        <br><br><br>
+        <div class="table-responsive">
+        <table  class="table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th style="color:black;font-weight: bold;text-align: center;">Sr.No.</th>
+                    <th style="color:black;font-weight: bold;text-align: center;">Product Name</th>
+                    <th style="color:black;font-weight: bold;text-align: center;">Product QTY</th>
+                    <th style="color:black;font-weight: bold;text-align: center;">Order Date</th>
+                    <th style="color:black;font-weight: bold;text-align: center;"> Action </th>
+                </tr>
+            </thead>
+            <tbody style="color:black;">
+                {% for i in prod %}
+                    <tr>
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+                        <td>
+                            {{ i.productname }}
+                        </td>
+                        <td>
+                            {% if i|qty_check %} 
+                                <p> {{ i.productquantity }} - Available({{ i|qty_data }}) </p> 
+                            {% else %}
+                                <p>{{ i.productquantity }} - Not Available({{ i|qty_data }}) </p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ i.date }}
+                        </td>
+                        <td>
+                            {% if i|qty_check %}
+                                <a class="button" style="background-color:rgb(30, 175, 17);color:black;" href="{% url 'accept_data' data.id i.id %}">Accept</a>
+                                <a class="button" style="background-color:red;color:black;" href="{% url 'denied_data' data.id i.id %}">Deny</a>
+                            {% else %}
+                                <a class="button" style="background-color:red;color:black;" href="#">Deny</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        </div>
+        
+    </div>
+    </body>
+</html>
+{% endblock %}

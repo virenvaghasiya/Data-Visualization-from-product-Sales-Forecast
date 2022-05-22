@@ -1,0 +1,96 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+{% block content3 %}
+<body>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Bill  </h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'AdminDashboard' %}">Dashboard</a></li>
+                    <li class="active"> Bill  </li>
+                </ol>
+            </div>
+        </div>
+<div>
+    {% comment %}
+        {% for store,prods in data.items %}
+        {{ store }}<br><br>
+            {% for pr,rec in prods.items %}
+                {{ pr }}
+                {% for r,v in rec.items %}
+                    {{ r }}
+                    {{ v }}
+                {% endfor %}
+                <br>
+            {% endfor %}
+        {% endfor %}
+    {% endcomment %}
+        
+
+    {% for store,prods in data.items %}
+
+
+    <div style="margin-left:15%; margin-top:10%; width:100%;">
+        <table style="height: auto;">  
+            <tr>
+                <td> <p style="color: black; height: 20%;"><u> Name :</u></p> {{ store.StoreName }}</td>
+                <td> <p style="color: black; height: 20%;"><u>Person Name :</u></p> {{ store.PersonName }}</td>
+            </tr>
+            <tr>
+                <td> <p style="color: black; height: 20%;"><u>Contact :</u></p> {{ store.Contact }}</td>
+                <td> <p style="color: black; height: 20%;"><u>Email :</u></p> {{ store.email }}</td>
+        
+            </tr>
+            <tr>
+                <td colspan="2"> <p style="color: black; height: 20%;"><u>Address :</u></p> {{ store.add1 }}</td>
+        
+            </tr>
+        </table>
+        </div>
+
+        <table border="2" style="margin-left:15%; width:78%;" class="table" >
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product QTY</th>
+                    <th>Product Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pr,rec in prods.items %}
+                    <tr>
+                        <td>{{ pr }}</td>
+                        <td>{{ rec.real_price }}</td>
+                        <td>{{ rec.prod_qty }}</td>
+                        <td>{{ rec.prod_price }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3">Total Amount : </td>
+                    <td> {{ grand_tot }} </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    {% if not show %}
+       
+        <div style="margin-left:15%;">
+             <a style="margin-left:45%;" class="btn btn-info" href="{% url 'create_pdf' store.StoreName %}"> Generate Pdf </a>
+            <!-- <button style="margin-left:45%;" class="btn btn-info"><a href="{% url 'create_pdf' store.StoreName %}"> Generate Pdf </a></button> -->
+            </div>
+    {% endif %}
+    
+
+{% endfor %}
+
+</div>
+</div>
+</body>
+{% endblock %}

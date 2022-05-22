@@ -1,0 +1,19 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<center>
+    <h1>Edit Product</h1><br>
+<form method="POST" onsubmit="alert('Product Edit successfully');">
+    {% csrf_token %}
+    <div class="form-group">
+      
+      <input type="text" placeholder="Enter Product Name" class="form-control" name="productname" id="id_productname" style="width: 40%;" value="{{ data.productname }}">
+    </div>
+    <div class="form-group">
+      
+      <input type="number" placeholder="Enter Product Quantity" class="form-control" name="productquantity" id="id_productquantity" style="width: 40%;" value="{{ data.productquantity }}">
+    </div>
+    
+    <button type="submit" class="btn btn-success">Edit Product</button>
+  </form> </center>
+
+{% endblock %}

@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'admin/plugins/images/favicon.png' %}">
+    <title>Sales Prediction Panel</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'admin/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{% static 'admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css' %}" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="{% static 'admin/plugins/bower_components/toast-master/css/jquery.toast.css' %}" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="{% static 'admin/plugins/bower_components/morrisjs/morris.css' %}" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="{% static 'admin/plugins/bower_components/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="{% static 'admin/css/animate.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="{% static 'admin/css/colors/default.css' %}" id="theme" rel="stylesheet">
+
+  
+	<link href="{% static 'uitheme/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'uitheme/css/datepicker3.css' %}" rel="stylesheet">
+	<link href="{% static 'uitheme/css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a class="logo" href="">
+                        <!-- Logo icon image, you can use font-icon also --><b>
+                        <h3>Pharmacy Distributor Panel</h3>   
+                        </b>
+                        </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
+                            href="javascript:void(0)"><i class="fa fa-bars"></i></a>
+                    </li>
+                     <li>
+                        <!-- <a class="profile-pic" href="#"> <b class="hidden-xs">Hi Admin</b></a> -->
+                    </li>
+                    <li>
+                         <!-- <a href="{% url 'viewstock' %}" class="notification"> -->
+                            <!-- <span>View Stock</span> -->
+                            
+                          <!-- </a> -->
+                    </li>
+                      
+                    <li style="float:right"><a href="">Welcome {{ auser }} </a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 70px 0 0;">
+                        <a href="{% url 'AdminDashboard' %}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'addstore' %}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Add Store</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'upload_dataset' %}" class="waves-effect"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                          </svg>            Upload Dataset</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'viewstock' %}" class="waves-effect"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                            <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                          </svg>     View Stock</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'confirm_order' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>  Confirm Order</a>
+                    </li>                    
+                    <li>
+                        <a href="{% url 'Order_Bills_data' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
+                          </svg>   Order Bills</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'storesales' %}" class="waves-effect"><i class="fa fa-bar-chart" aria-hidden="true"></i> Store Sales</a>
+                    </li>
+                     <li>
+                        <a href="{% url 'createGraph' %}" class="waves-effect"><i class="fa fa-bar-chart" aria-hidden="true"></i> Sales prediction</a>
+                    </li> 
+
+                   
+                    <li>
+                        <a href="{% url 'adminlogout' %}" class="waves-effect"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                    </li>
+                    
+                </ul>
+               
+            </div>
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        {% block content %}
+        {% endblock %}
+        
+        {% block content1 %}
+        {% endblock %}
+    
+        {% block content2 %}
+        {% endblock %}
+
+        {% block content3 %}
+        {% endblock %}
+
+        {% block content4 %}
+        {% endblock %}
+
+        
+        {% block content7 %}
+        {% endblock %}
+         
+        {% block content9 %} 
+        {% endblock %}
+        
+ <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    
+
+    <script src="{% static 'admin/plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'admin/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{% static 'admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js' %}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{% static 'admin/js/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'admin/js/waves.js' %}"></script>
+    <!--Counter js -->
+    <script src="{% static 'admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js' %}"></script>
+    <script src="{% static 'admin/plugins/bower_components/counterup/jquery.counterup.min.js' %}"></script>
+    <!-- chartist chart -->
+    <script src="{% static 'admin/plugins/bower_components/chartist-js/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script src="{% static 'admin/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'admin/js/custom.min.js' %}"></script>
+    <script src="{% static 'admin/js/dashboard1.js' %}"></script>
+    <script src="{% static 'admin/plugins/bower_components/toast-master/js/jquery.toast.js' %}"></script>
+   
+</body>
+
+</html>

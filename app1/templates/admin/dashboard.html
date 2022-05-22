@@ -1,0 +1,118 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+{% block content %}
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Dashboard</h4> </div>
+                        
+                    <!-- /.col-lg-12 -->
+                </div>
+             
+               
+                <!-- ============================================================== -->
+                <!-- table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="white-box">
+                                <div class="container">
+                                 <form action="" method="GET">
+                                     <input type="text" name="search" class="form-control fa fa-search" placeholder="search ..">
+                                 </form>
+                             </div>
+                             <br><br>
+                             <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:black; font-weight: bold;">No</th>
+                                            <th style="color:black; font-weight: bold;">Store Name</th>
+                                            <th style="color:black; font-weight: bold;">Shopkeeper Name</th>
+                                            <th style="color:black; font-weight: bold;">Contact</th>
+                                            <th style="color:black; font-weight: bold;">Email</th>
+                                            <th style="color:black; font-weight: bold;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            
+                            {% for p in StoreDetails %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td class="txt-oflo">{{ p.StoreName }}</td>
+                                <td>{{ p.PersonName }}</td>
+                                <td>{{ p.Contact }}</td>
+                                <td>{{ p.email }}</td>
+                               
+                                <td><a href = "/storedelete/{{ p.id }}">Delete</a> <a href = "/storeview/{{ p.id }}">View</a> <a href = "/storeedit/{{ p.id }}">Edit</a></td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                            </table>
+                          
+                          
+                          <br>
+                          <br>
+                          
+                            <h3 class="box-title">Store Information</h3>
+                           
+                        <br><hr>
+                        </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:black; font-weight: bold;">No</th>
+                                            <th style="color:black; font-weight: bold;">Store Name</th>
+                                            <th style="color:black; font-weight: bold;">Shopkeeper Name</th>
+                                            <th style="color:black; font-weight: bold;">Contact</th>
+                                            <th style="color:black; font-weight: bold;">Email</th>
+                                            <th style="color:black; font-weight: bold;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for i in data %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td class="txt-oflo">{{ i.StoreName }}
+                                                <a href = "/storeview/{{ i.id }}"></a></td>
+                                            <td>{{ i.PersonName }}</td>
+                                            <td>{{ i.Contact }}</td>
+                                            <td>{{ i.email }}</td>
+                                           
+                                            <td><a href = "/storedelete/{{ i.id }}">Delete</a> <a href = "/storeview/{{ i.id }}">View</a> <a href = "/storeedit/{{ i.id }}">Edit</a></td>
+                                        </tr>
+                                     {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- chat-listing & recent comments -->
+                <!-- ============================================================== -->
+                
+            <!-- <img src="{% static 'GRAPHS/prediction_graph.png' %}"> -->
+            
+
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2022 &copy; Sales Prediction Panel </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+{% endblock %}
