@@ -3,7 +3,7 @@
 # Tech Used
 Software: Visual Studio Code
 
-Language: Python, Django
+Language: Python, Django, CSS, HTML, JAVAScript
 # Hi, I'm Viren Vaghasiya! :wave:
 I'm a about to complete my Bachelor's of I.T Engineering, and also as a side Stock market and Crypto Trader who is always ready to invest and make profit.
 
